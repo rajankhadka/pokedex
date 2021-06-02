@@ -1,0 +1,8 @@
+const POKEMON = {
+    'POKEMON_GET': 'POKEMON_GET',
+    'POKEMON_REMOVE':'POKEMON_REMOVE',
+}
+
+export {
+    POKEMON
+}

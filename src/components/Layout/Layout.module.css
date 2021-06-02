@@ -1,0 +1,17 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* background-color: aqua; */
+}
+
+.layout__body {
+  display: flex;
+  height: 92vh;
+  background-color: #3d3d3d;
+  overflow: scroll;
+}
+
+.layout__body__right {
+  flex: 1;
+}

@@ -1,0 +1,33 @@
+.sidebar {
+  background-color: #292929;
+}
+
+.sidebar__expand {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.sidebar__header {
+  height: 8vh;
+  border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sidebar__header > div {
+  flex: 0.5;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header__pokeball__img {
+  /* flex: 0.5; */
+  width: 50px;
+  height: 6vh;
+}
+
+.sidebar__body {
+  color: white;
+}

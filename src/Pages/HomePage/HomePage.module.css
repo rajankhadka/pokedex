@@ -1,0 +1,9 @@
+.homepage {
+  height: 92vh;
+  overflow-y: scroll;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 20px;
+  padding-top: 20px;
+}

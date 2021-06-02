@@ -1,0 +1,213 @@
+.detailPage {
+  flex: 1;
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailPage__content {
+  width: 50%;
+  height: 88vh;
+  background-color: #292929;
+  border-radius: 10px;
+  overflow: scroll;
+  box-shadow: 8px 8px 10px black;
+}
+
+.detailPage__content__header {
+  height: 8vh;
+  border-bottom: 1px white solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailPage__content__header h2 {
+  color: white;
+  text-transform: capitalize;
+}
+
+/* ----------info------ */
+.detailPage__content__info {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  height: 40vh;
+  width: 100%;
+  /* background-color: aqua; */
+}
+
+.detailPage__content__info__left {
+  flex: 0.5;
+  /* background-color: aquamarine; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detailPage__content__info__right {
+  flex: 0.5;
+  /* background-color: yellowgreen; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.type,
+.hp,
+.attack,
+.defence,
+.speed,
+.spAttack,
+.spDefence {
+  display: flex;
+  flex-direction: row;
+  /* background-color: blue; */
+  align-items: center;
+}
+
+.type > p,
+.hp > p,
+.attack > p,
+.defence > p,
+.speed > p,
+.spAttack > p,
+.spDefence > p {
+  text-transform: capitalize;
+  flex: 0.3;
+  color: white;
+  /* background-color: aquamarine; */
+}
+
+/* --------type-------- */
+
+.type > div {
+  /* background-color: bisque; */
+  flex: 0.7;
+  display: flex;
+}
+
+.typeName {
+  /* margin: 0 10px; */
+  padding: 5px 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  text-transform: capitalize;
+  color: white;
+  box-sizing: border-box;
+}
+
+/* --------hp------- */
+.hp > div,
+.attack > div,
+.defence > div,
+.speed > div,
+.spAttack > div,
+.spDefence > div {
+  width: 100%;
+  background-color: #3d3d3d;
+  flex: 0.7;
+}
+
+.hp > div > div,
+.attack > div > div,
+.defence > div > div,
+.speed > div > div,
+.spAttack > div > div,
+.spDefence > div > div {
+  background-color: #73b504;
+  display: flex;
+  justify-content: center;
+}
+
+/* ------------profile ------- */
+.detailPage__content__profile {
+  width: 100%;
+  height: 25vh;
+  /* background-color: aqua; */
+}
+
+.detailPage__content__profile__header {
+  height: 5vh;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+/* height */
+.detailPage__content__profile__body {
+  display: flex;
+  margin-left: 30px;
+  width: 90%;
+  /* background-color: #73b504; */
+  flex-direction: column;
+}
+
+.profile__row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.profile__height,
+.profile__weight,
+.profile__ability {
+  display: flex;
+  flex-direction: row;
+  flex: 0.5;
+  margin: 10px 0;
+  /* background-color: aqua; */
+}
+
+.profile__name {
+  flex: 0.3;
+  color: white;
+}
+
+.profile__value {
+  flex: 0.7;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.profile__ability > div {
+  /* background-color: red; */
+}
+
+/* ----------attack profile---------- */
+.attackanddamage {
+  margin-top: 10px;
+  width: 100%;
+  /* height: 60vh; */
+  /* background-color: #73b504; */
+}
+
+.attackanddamage__header {
+  height: 5vh;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+/* --------------moves-------- */
+.moves {
+  width: 100%;
+  /* height: 50vh; */
+  margin-top: 10px;
+  /* background-color: #73b504; */
+}
+
+.moves__header {
+  height: 5vh;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}

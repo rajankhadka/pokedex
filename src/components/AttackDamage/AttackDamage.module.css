@@ -1,0 +1,50 @@
+.attackdamage {
+  margin-left: 30px;
+  width: 90%;
+  color: white;
+}
+
+.attack__header {
+  background-color: #3d3d3d;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  color: white;
+}
+
+.attack__body {
+  display: flex;
+  margin-top: 10px;
+  line-height: 30px;
+}
+
+.attack__body__double {
+  /* background-color: aqua; */
+  flex: 0.34;
+  height: 30vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.attack__body__half {
+  /* background-color: bisque; */
+  flex: 0.33;
+  height: 30vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.attack__body__no {
+  /* background-color: blueviolet; */
+  flex: 0.33;
+  height: 30vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
