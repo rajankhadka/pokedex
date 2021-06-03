@@ -1,11 +1,26 @@
 .sidebar {
   background-color: #292929;
+  width: 5%;
+  height: 92vh;
 }
 
 .sidebar__expand {
   position: absolute;
   top: 0;
   left: 0;
+  width: 20%;
+  height: 100vh;
+}
+
+@media screen and (max-width: 600px) {
+  .sidebar__expand {
+    width: 100% !important;
+    display: block;
+  }
+
+  .sidebar {
+    display: none;
+  }
 }
 
 .sidebar__header {
@@ -30,4 +45,18 @@
 
 .sidebar__body {
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar__body div {
+  display: flex;
+  height: 5vh;
+  /* background-color: aqua; */
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+  cursor: pointer;
 }

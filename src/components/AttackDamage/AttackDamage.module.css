@@ -22,7 +22,7 @@
 .attack__body__double {
   /* background-color: aqua; */
   flex: 0.34;
-  height: 30vh;
+  height: 20vh;
   overflow: scroll;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@
 .attack__body__half {
   /* background-color: bisque; */
   flex: 0.33;
-  height: 30vh;
+  height: 20vh;
   overflow: scroll;
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@
 .attack__body__no {
   /* background-color: blueviolet; */
   flex: 0.33;
-  height: 30vh;
+  height: 20vh;
   overflow: scroll;
   display: flex;
   flex-direction: column;

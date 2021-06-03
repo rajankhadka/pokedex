@@ -1,3 +1,10 @@
+.back {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
 .detailPage {
   flex: 1;
   height: 92vh;
@@ -13,6 +20,18 @@
   border-radius: 10px;
   overflow: scroll;
   box-shadow: 8px 8px 10px black;
+}
+
+@media screen and (max-width: 600px) {
+  .detailPage__content {
+    width: 90%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .detailPage__content {
+    width: 70%;
+  }
 }
 
 .detailPage__content__header {
@@ -124,7 +143,6 @@
 /* ------------profile ------- */
 .detailPage__content__profile {
   width: 100%;
-  height: 25vh;
   /* background-color: aqua; */
 }
 
@@ -187,6 +205,23 @@
 }
 
 .attackanddamage__header {
+  height: 5vh;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+/* evolution------------ */
+
+.evolution {
+  width: 100%;
+  margin-top: 10px;
+  /* background-color: #73b504; */
+}
+
+.evolution__header {
   height: 5vh;
   background-color: black;
   color: white;

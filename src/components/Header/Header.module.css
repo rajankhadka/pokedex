@@ -49,3 +49,34 @@
   background-color: #3d3d3d;
   width: 60px;
 }
+
+.end {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+}
+
+.filter {
+  width: 30%;
+  background-color: #292929;
+  height: 50vh;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.close {
+  display: flex;
+  margin-top: 10px;
+  margin-right: 10px;
+  justify-content: flex-end;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
+}

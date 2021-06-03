@@ -1,21 +1,30 @@
-import { Menu } from '@material-ui/icons';
-import React from 'react'
+import { Explore, Home, Menu } from '@material-ui/icons';
+import React,{useRef, useState} from 'react'
 import classes from './Sidebar.module.css';
 import pokeball from '../../asset/pokemon_ball.png'
 
+import { useHistory} from 'react-router-dom';
 function Sidebar(props) {
+
+    const sidebarHistory = useHistory();
 
     let sidebarClassName = [classes.sidebar];
     if (props.sidebarExpand) {
         sidebarClassName.push(classes.sidebar__expand);
     }
 
+
+    const siderbarActiveHandler = () => {
+        sidebarHistory.push('/');
+    }
+
     return (
         <div
             className={sidebarClassName.join(' ')}
             style={{
-                height:!props.sidebarExpand ? '92vh' : '100vh',
-                width: props.sidebarExpand ? '20%' : '5%'
+                display: window.screen.width < 600 ? (props.sidebarExpand ? 'block' : 'none'): 'block',
+                // height:!props.sidebarExpand ? '92vh' : '100vh',
+                // width: props.sidebarExpand ? '20%' : '5%'
             }}
         >
             {
@@ -39,7 +48,15 @@ function Sidebar(props) {
                 </div>
             }
             <div className={classes.sidebar__body}>
-                Home
+                <div
+                    onClick={() => siderbarActiveHandler()}
+                >
+                    <Home style={{ color: 'white' }} />
+                    { props.sidebarExpand && <p>Home</p>}
+                </div>
+
+
+                
             </div>
         </div>
     )

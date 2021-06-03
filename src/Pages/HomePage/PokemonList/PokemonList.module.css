@@ -1,4 +1,35 @@
-.pokemonList {
+/* @media screen and (min-width: 992) {
+  
+} */
+/* .pokemonList {
   width: 200px;
   margin: 10px;
+} */
+
+@media screen and (max-width: 599px) {
+  .pokemonList {
+    width: 90%;
+    margin: 10px 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .pokemonList {
+    width: 45%;
+    margin: 10px 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .pokemonList {
+    width: 220px;
+    margin: 15px;
+  }
+}
+
+@media screen and (min-width: 993px) {
+  .pokemonList {
+    width: 200px;
+    margin: 10px;
+  }
 }

@@ -5,13 +5,23 @@ import Image from '../../components/Image/Image';
 import EggGroup from '../../components/EggGroup/EggGroup';
 import AttackDamage from '../../components/AttackDamage/AttackDamage';
 import Moves from '../../components/Moves/Moves';
+import { ArrowBack } from '@material-ui/icons';
+import Evolutions from '../../components/Evolutions/Evolutions';
+
+//redux
+import {connect } from 'react-redux';
 
 function DetailPage(props) {
     console.log('[DetailPage.js]', props);
     const [pokemonDetail, setPokemonDetail] = useState(null);
     useEffect(() => {
-        
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${props.location.state.id}`)
+        let url = props.match.params.name.toLowerCase();
+        if (props.location.state) {
+            
+            url = props.location.state.id;
+        }
+
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${url}`)
             .then(data => {
                 // console.log(data.data);
                 setPokemonDetail(prevState => {
@@ -25,13 +35,14 @@ function DetailPage(props) {
                         types: data.data.types,
                         weight: data.data.weight,
                         forms: data.data.forms[0].url,
-                        height: data.data.height
+                        height: data.data.height,
+                        species: data.data.species.url
                     }
                 })
             })
             .catch(err => console.log(err));
 
-    }, [props.location.state.id]);
+    }, [props.match.params.name]);
 
     let type = null;
     let abilities = '';
@@ -49,182 +60,213 @@ function DetailPage(props) {
 
     console.log('pokemonDetail', pokemonDetail);
     return (
-        pokemonDetail && 
-        <div className={classes.detailPage}>
-            <div className={classes.detailPage__content}>
-                <div className={classes.detailPage__content__header}>
-                    <h2>{ pokemonDetail.name }</h2>
-                </div>
-
-                {/* info start  */}
-                <div className={classes.detailPage__content__info}>
-                    <div className={classes.detailPage__content__info__left}>
-                        <Image
-                            image={pokemonDetail.image}
-                            forms={pokemonDetail.forms}
-                        />
-                    </div>
-
-                    <div className={classes.detailPage__content__info__right}>
-                        <div className={classes.type}>
-                            <p>type</p>
-                            <div>
-                                {type}
-                            </div>
-                            
-                        </div>
-
-                        <div className={classes.hp}>
-                            <p>Hp</p>
-                            <div>
-                                <div style={{width:`${pokemonDetail.stats[0].base_stat}px` }}>
-                                    {pokemonDetail.stats[0].base_stat}
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                        <div className={classes.attack}>
-                            <p>Attack</p>
-                            <div>
-                                <div style={{width:`${pokemonDetail.stats[1].base_stat}px` }}>
-                                    {pokemonDetail.stats[1].base_stat}
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                        <div className={classes.defence}>
-                            <p>Defence</p>
-                            <div>
-                                <div style={{width:`${pokemonDetail.stats[2].base_stat}px` }}>
-                                    {pokemonDetail.stats[2].base_stat}
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                        <div className={classes.speed}>
-                            <p>Speed</p>
-                            <div>
-                                <div style={{width:`${pokemonDetail.stats[3].base_stat}px` }}>
-                                    {pokemonDetail.stats[3].base_stat}
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                        <div className={classes.spAttack}>
-                            <p>Sp. Attack</p>
-                            <div>
-                                <div style={{width:`${pokemonDetail.stats[4].base_stat}px` }}>
-                                    {pokemonDetail.stats[4].base_stat}
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                        <div className={classes.spDefence}>
-                            <p>Sp. Defence</p>
-                            <div>
-                                <div style={{width:`${pokemonDetail.stats[5].base_stat}px` }}>
-                                    {pokemonDetail.stats[5].base_stat}
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* info end  */}
-
-                {/* profile start  */}
-                
-                <div className={classes.detailPage__content__profile}>
-                    <div className={classes.detailPage__content__profile__header}>
-                        <h3>Profile</h3>
-                    </div>
-
-                    <div className={classes.detailPage__content__profile__body}>
-                        <div className={classes.profile__row}>
-                            <div className={classes.profile__height}>
-                                <p className={classes.profile__name}>Height : </p>
-                                <p className={classes.profile__value}>{ parseInt(pokemonDetail.height)/10} m </p>
-                            </div>
-
-                            <div className={classes.profile__weight}>
-                                <p className={classes.profile__name}>weight : </p>
-                                <p className={classes.profile__value}>{ parseInt(pokemonDetail.weight)/10} kg</p>
-                            </div>
-                        </div>
-                        
-
-                        <div className={classes.profile__row}>
-                            
-                            <div className={classes.profile__ability}>
-                                <p className={classes.profile__name}>Ability : </p>
-                                {/* {
-                                    pokemonDetail && pokemonDetail.abilities.map((ability,index) => (
-                                        <div className={classes.profile__value} key={index}>
-                                            <p>{ability.ability.name }</p>
-                                        </div>
-                                    ))
-                                } */}
-                                {
-                                    pokemonDetail
-                                    &&
-                                    <div className={classes.profile__value}>
-                                        <p>{ abilities }</p>
-                                    </div>
-                                }
-                            </div>
-                            
-                            <div className={classes.profile__ability}>
-                                <p className={classes.profile__name}>Egg Group : </p>
-                                {
-                                    pokemonDetail && <EggGroup name={ pokemonDetail.name}/>
-                                }
-                            </div>
-
-                        </div>
-                        
-
-                       
-                    </div>
-                </div>
-
-                {/* profile end */}
-
-                {/* attack profile start */}
-                
-                <div className={classes.attackanddamage}>
-                    <div className={classes.attackanddamage__header}>
-                        <p>Fighting Profile</p>
-                    </div>
-
-                    
-                    <AttackDamage types={ pokemonDetail.types}/>
-                    
-                    
-                </div>
-
-                {/* attack profile end */}
-
-
-                {/* moves start */}
-
-                <div className={classes.moves}>
-                    <div className={classes.moves__header}>
-                        Moves
-                    </div>
-
-                    <Moves moves={ pokemonDetail.moves} />
-                </div>
-
-                {/* moves end */}
+        pokemonDetail &&
+        <>
+            <div className={classes.back}>
+                <ArrowBack
+                    onClick={() => {
+                        props.history.push('/');
+                    }}
+                    style={{
+                        color: 'white',
+                        cursor: 'pointer'
+                    }}
+                />
             </div>
-        </div>
+            <div className={classes.detailPage}>
+                <div className={classes.detailPage__content}>
+                    <div className={classes.detailPage__content__header}>
+                        <h2>{ pokemonDetail.name }</h2>
+                    </div>
+
+                    {/* info start  */}
+                    <div className={classes.detailPage__content__info}>
+                        <div className={classes.detailPage__content__info__left}>
+                            <Image
+                                image={pokemonDetail.image}
+                                forms={pokemonDetail.forms}
+                            />
+                        </div>
+
+                        <div className={classes.detailPage__content__info__right}>
+                            <div className={classes.type}>
+                                <p>type</p>
+                                <div>
+                                    {type}
+                                </div>
+                                
+                            </div>
+
+                            <div className={classes.hp}>
+                                <p>Hp</p>
+                                <div>
+                                    <div style={{width:`${pokemonDetail.stats[0].base_stat}px` }}>
+                                        {pokemonDetail.stats[0].base_stat}
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div className={classes.attack}>
+                                <p>Attack</p>
+                                <div>
+                                    <div style={{width:`${pokemonDetail.stats[1].base_stat}px` }}>
+                                        {pokemonDetail.stats[1].base_stat}
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div className={classes.defence}>
+                                <p>Defence</p>
+                                <div>
+                                    <div style={{width:`${pokemonDetail.stats[2].base_stat}px` }}>
+                                        {pokemonDetail.stats[2].base_stat}
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div className={classes.speed}>
+                                <p>Speed</p>
+                                <div>
+                                    <div style={{width:`${pokemonDetail.stats[3].base_stat}px` }}>
+                                        {pokemonDetail.stats[3].base_stat}
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div className={classes.spAttack}>
+                                <p>Sp. Attack</p>
+                                <div>
+                                    <div style={{width:`${pokemonDetail.stats[4].base_stat}px` }}>
+                                        {pokemonDetail.stats[4].base_stat}
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div className={classes.spDefence}>
+                                <p>Sp. Defence</p>
+                                <div>
+                                    <div style={{width:`${pokemonDetail.stats[5].base_stat}px` }}>
+                                        {pokemonDetail.stats[5].base_stat}
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* info end  */}
+
+                    {/* profile start  */}
+                    
+                    <div className={classes.detailPage__content__profile}>
+                        <div className={classes.detailPage__content__profile__header}>
+                            <h3>Profile</h3>
+                        </div>
+
+                        <div className={classes.detailPage__content__profile__body}>
+                            <div className={classes.profile__row}>
+                                <div className={classes.profile__height}>
+                                    <p className={classes.profile__name}>Height : </p>
+                                    <p className={classes.profile__value}>{ parseInt(pokemonDetail.height)/10} m </p>
+                                </div>
+
+                                <div className={classes.profile__weight}>
+                                    <p className={classes.profile__name}>weight : </p>
+                                    <p className={classes.profile__value}>{ parseInt(pokemonDetail.weight)/10} kg</p>
+                                </div>
+                            </div>
+                            
+
+                            <div className={classes.profile__row}>
+                                
+                                <div className={classes.profile__ability}>
+                                    <p className={classes.profile__name}>Ability : </p>
+                                    {/* {
+                                        pokemonDetail && pokemonDetail.abilities.map((ability,index) => (
+                                            <div className={classes.profile__value} key={index}>
+                                                <p>{ability.ability.name }</p>
+                                            </div>
+                                        ))
+                                    } */}
+                                    {
+                                        pokemonDetail
+                                        &&
+                                        <div className={classes.profile__value}>
+                                            <p>{ abilities }</p>
+                                        </div>
+                                    }
+                                </div>
+                                
+                                <div className={classes.profile__ability}>
+                                    <p className={classes.profile__name}>Egg Group : </p>
+                                    {
+                                        pokemonDetail && <EggGroup name={ pokemonDetail.name}/>
+                                    }
+                                </div>
+
+                            </div>
+                            
+
+                        
+                        </div>
+                    </div>
+
+                    {/* profile end */}
+
+                    {/* attack profile start */}
+                    
+                    <div className={classes.attackanddamage}>
+                        <div className={classes.attackanddamage__header}>
+                            <p>Fighting Profile</p>
+                        </div>
+
+                        
+                        <AttackDamage types={ pokemonDetail.types}/>
+                        
+                        
+                    </div>
+
+                    {/* attack profile end */}
+
+                    
+                    {/* evolution start  */}
+
+                    <div className={classes.evolution}>
+                        <div className={classes.evolution__header}>
+                            Evolutions
+                        </div>
+
+                        <Evolutions species={ pokemonDetail.species} />
+                    </div>
+                    
+                    {/* evolution end */}
+
+                    {/* moves start */}
+
+                    <div className={classes.moves}>
+                        <div className={classes.moves__header}>
+                            Moves
+                        </div>
+
+                        <Moves moves={ pokemonDetail.moves} />
+                    </div>
+
+                    {/* moves end */}
+                </div>
+            </div>
+        </>
     )
 }
 
-export default DetailPage
+const mapStateToProps = state => {
+    return {
+        pokemons: state.pokemonsgetReducers.savedPokemons,
+    }
+}
+
+export default connect(mapStateToProps)(DetailPage)

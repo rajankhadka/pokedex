@@ -12,10 +12,12 @@ import PokemonList from './PokemonList/PokemonList';
 class HomePage extends Component{
 
     componentWillUnmount() {
+        window.localStorage.setItem('pokemons',JSON.stringify(this.props.pokemons))
         this.props.removeallPokemonAction();
         console.log('component will unmount');
         console.log(this.props.pokemons.length);
     }
+
     
     componentDidMount() {
         console.log('component did mount');
@@ -37,23 +39,27 @@ class HomePage extends Component{
                         'Content-Type': 'application/json',
                     }
                 })
-                    .then(data => this.props.getallPokemonAction(
-                        {
-                            name: data.data.species.name,
-                            // image: data.data.sprites.versions['generation-iv']['diamond-pearl']['front_default'],
-                            id: data.data.id,
-                            image: data.data.sprites.other['official-artwork']['front_default'],
-                        }
+                    .then(data => {
+                        this.props.getallPokemonAction(
+                            {
+                                name: data.data.species.name,
+                                // image: data.data.sprites.versions['generation-iv']['diamond-pearl']['front_default'],
+                                id: data.data.id,
+                                image: data.data.sprites.other['official-artwork']['front_default'],
+                            }
                         
-                    ))
+                        )
+                    })
                     .catch(err => console.log(err))
 
-            })
+            });
 
             
         })
             
             .catch(error => console.log(error));
+        
+        
     }
 
     pageChangeRoute = (name,id) => {
@@ -64,20 +70,28 @@ class HomePage extends Component{
         })
     }
 
+    
+
     render() {
-        return (
-            <div className={classes.homepage}>
-                {
-                    this.props.pokemons.length === 1118
-                        ? 
-                        <PokemonList
+        let renderHomePage = null;
+
+        if ((this.props.pokemons.length === 1118) && !(this.props.searchPokemons.length > 0)) {
+            renderHomePage = <PokemonList
                             pokemons={this.props.pokemons}
                             pageChangeRoute={this.pageChangeRoute}
                         />
-                        :
-                        <h1>Loading</h1>
-                    
-                }
+        } else if ((this.props.searchPokemons.length > 0)) {
+            renderHomePage=<PokemonList
+                            pokemons={this.props.searchPokemons}
+                            pageChangeRoute={this.pageChangeRoute}
+                        />
+        } else {
+            renderHomePage=<h1>Loading</h1>
+        }
+
+        return (
+            <div className={classes.homepage}>
+                {renderHomePage}
             </div>
             
         )
@@ -90,14 +104,14 @@ class HomePage extends Component{
 const mapStateToProps = (state) => {
     return {
         pokemons: state.pokemonsgetReducers.pokemons,
-        
+        searchPokemons: state.pokemonsgetReducers.searchPokemon,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getallPokemonAction: (data) => dispatch(getallPokemon(data)),
-        removeallPokemonAction:() => dispatch(removeallPokemon())
+        removeallPokemonAction: () => dispatch(removeallPokemon()),
     }
 }
 

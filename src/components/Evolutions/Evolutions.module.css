@@ -1,0 +1,19 @@
+.evolution {
+  margin-left: 30px;
+  width: 90%;
+  margin-top: 10px;
+  /* background-color: aqua; */
+}
+
+.main {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.middle {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}

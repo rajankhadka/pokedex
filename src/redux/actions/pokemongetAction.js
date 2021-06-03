@@ -15,3 +15,12 @@ export const removeallPokemon = () => {
     }
 }
 
+export const searchPokemon = (data) => {
+    return {
+        type: POKEMON.POKEMON_SEARCH,
+        payload: {
+            data
+        }
+    }
+}
+

@@ -1,7 +1,8 @@
 import { POKEMON } from '../../actionTypes';
 
 const initialState = {
-    pokemons:[], 
+    pokemons: [],
+    searchPokemon:[],
 }
 
 const pokemonsgetReducers = (state = initialState, action) => {
@@ -16,6 +17,12 @@ const pokemonsgetReducers = (state = initialState, action) => {
             return {
                 ...state,
                 pokemons:[]
+            }
+        
+        case POKEMON.POKEMON_SEARCH:
+            return {
+                ...state,
+                searchPokemon:[...action.payload.data]
             }
         
         default:
